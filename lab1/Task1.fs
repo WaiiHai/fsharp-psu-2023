@@ -1,18 +1,29 @@
 module fsharp_psu_2023.lab1.Task1
 open System
 
-
-let rec getList (n, list) =
-    if n = 0 then
-        list
-    else
-        let s = (Int32.Parse(Console.ReadLine()) % 2)     
-        getList((n-1), list @ [(if (s = 0) then 0 else 1)])
-            
-        
-[<EntryPoint>]
+(* Мальцев А. 9 в-нт *)
+(* Сформировать список из значений 1 и 0 по принципу: 0 — если очередное введенное число нечетное, 1 — в противном случае *)
 let main argv =
-   let len = Int32.Parse(Console.ReadLine())
-   let list = (getList(len, [])).ToString()
-   printf "%s" list
+   let len = int(Console.ReadLine())
+   
+   let list =
+    [ let read _ = int(Console.ReadLine()) % 2 // ф-ия read: читаем ввод, приводим тип к int, берем значение по модулю 2
+      for i in 1 .. len do   // генерация списка циклом от 1 до `len` включительно 
+        if (read i) = 0 then // вызов ф-ии с фиктивным аргументом, сравнение с нулем (=четные элементы)
+            yield 1
+        else                 // остальные элементы (=нечетные)
+            yield 0
+        ]
+    
+   printf "%A" list
    0
+   
+(* запуск
+5
+1
+2
+3
+4
+5
+[0; 1; 0; 1; 0]
+*)
