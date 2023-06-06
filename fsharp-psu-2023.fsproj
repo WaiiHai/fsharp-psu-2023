@@ -46,6 +46,16 @@
         <Content Include="packages.config" />
         <Compile Include="lab1\Task0.fs" />
         <Compile Include="lab1\Task1.fs" />
+        <Compile Include="lab1\Task2.fs" />
+        <Compile Include="lab2\Task1.fs" />
+        <Compile Include="lab2\Task2.fs" />
+        <Compile Include="lab3\Task1.fs" />
+        <Compile Include="lab3\Task2.fs" />
+        <Compile Include="lab3\Task3.fs" />
+        <Compile Include="lab4\Task2.fs" />
+        <Compile Include="lab4\Task1.fs" />
+        <Compile Include="index.fs" />
+        
     </ItemGroup>
     <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
 </Project>
