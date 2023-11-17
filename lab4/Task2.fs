@@ -21,20 +21,22 @@ let rec printInOrder tree =
         
 let tree_fold func acc tree digit =   
     let rec traverse d k = 
-        match d with    (* обход по всем вершинам методом func, digit - доп. параметр *)
+        match d with
         | Node (t,l,r) -> traverse r (func (traverse l k) t digit)
         | Empty -> k
     traverse tree acc
 
 let rec countDigit acc number searchDigit =
     if abs number > 0 then
-        countDigit (acc +
-                    (if ((abs number) % 10) = searchDigit then 1 else 0)) (* аккумуляция кол-ва найденных цифр*)
-                    ((abs number) / 10) searchDigit                       (* рекурсивный вызов на разряд ниже*)
+        if (abs number)%10 = searchDigit then
+            acc+1
+        else 
+            countDigit (acc) ((abs number) / 10) searchDigit
     else
         acc
-let main argv =
-    let binTree = (* задание древа *)
+
+let main =
+    let binTree =
         Node(5,
             Node(-7, Empty, Empty),
             Node(16,
